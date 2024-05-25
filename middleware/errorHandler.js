@@ -1,27 +1,33 @@
-const {constants}=require("../constants")
-
-
-
+const {constant}=require("../constants")
 const errorHandler=(err,req,res,next)=>
     {
         const statusCode=res.statusCode? res.statusCode:500; // if dont have status code it will be 500
         switch (statusCode)
         {
-            case constants.VALIDATION_ERROR: 
-            res.json({title:"Validation Failed",message:err.message,stackTrace:err.stack});
-            break;
-            case constants.NOT_FOUND:
-                res.json({title:"Not Found",message:err.message,stackTrace:err.stack});
+            case constant.VALIDATION_ERROR: 
+                res.json({
+                title:"Validation Failed",
+                message:err.message,
+                stackTrace:err.stack});
                 break;
-            case constants.UNAUTHORIZED:
-                    res.json({title:"UNAUTHORIZED",message:err.message,stackTrace:err.stack});
-                    break;
-            case constants.FORBIDDEN:
-                        res.json({title:"FORBIDDEN",message:err.message,stackTrace:err.stack});
-                        break;
-            case constants.SERVER_ERROR:
-                            res.json({title:"SERVER ERROR",message:err.message,stackTrace:err.stack});
-                            break;
+            case constant.NOT_FOUND:
+                res.json({title:"Not Found",
+                message:err.message,
+                stackTrace:err.stack});
+                
+            case constant.UNAUTHORIZED:
+                    res.json({title:"UNAUTHORIZED",
+                    message:err.message,
+                    stackTrace:err.stack});
+                    
+            case constant.FORBIDDEN:
+                        res.json({title:"FORBIDDEN",
+                        message:err.message,
+                        stackTrace:err.stack});   
+            case constant.SERVER_ERROR:
+                            res.json({title:"SERVER ERROR",
+                            message:err.message,
+                            stackTrace:err.stack});             
             default:
                 console.log("No error, All good!");
                 break;
