@@ -45,7 +45,7 @@ const registerUser = asyncHandler (async (req,res)=>{
 //Router POST /api/users/login
 //@acess public/ everyone can entry
 const loginUser = asyncHandler (async (req,res)=>{
-    const [email,password]=req.body;
+    const {email,password}=req.body;
     if(!email||!password)
         {
             res.status(400);
@@ -61,11 +61,19 @@ const loginUser = asyncHandler (async (req,res)=>{
                     email:user.email,
                     id: user.id,
                 },
-            });
+            },
+             process.env.ACCESS_TOKEN_SECRET, 
+            { expiresIn:"15m" /*EXPIRE IN 1 MINUTES*/ }
+        );
             res.status (200).json({accessToken});
         }
-    res.json({message:"Login the user"});
-})
+        else
+        {
+            res.status(401);
+            throw new Error ("Email or password is not valid!");
+        }
+    
+});
 //@desc Current user info
 //@route GET /api/users/current
 //@access private
