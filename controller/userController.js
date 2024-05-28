@@ -1,8 +1,26 @@
 //@desc Register
-//route GET /api/contacts
-//@acess public
+//route GET /api/users/register
+//@acess public everyone can entry
 
-const getContact = asyncHandler (async (req,res)=>{
-    const contact = await Contact.find();
-    res.status(200).json(contacts);
+const asyncHandler = require("express-async-handler");
+
+const registerUser = asyncHandler (async (req,res)=>{
+    res.json({message:"Register the user"});
 });
+
+//@desc Login User
+//Router POST /api/users/login
+//@acess public/ everyone can entry
+const loginUser = asyncHandler (async (req,res)=>{
+    res.json({message:"Login the user"});
+})
+//@desc Current user info
+//@route GET /api/users/current
+//@access private
+const currentUser =asyncHandler(async (req,res)=>{
+    res.json({message:"Current user"});
+})
+module.exports= {registerUser,loginUser,currentUser};
+
+
+
