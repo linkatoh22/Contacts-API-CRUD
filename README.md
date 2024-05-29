@@ -1,2 +1,2 @@
-# Learn-Backend
-Learning backend with Nodejs, Express, MongoDB
+# Contact API CONTACTS
+Create a basic contacts app API with Nodejs, Express, MongoDB
